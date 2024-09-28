@@ -1,0 +1,67 @@
+@ExtModule.API_HostAddress = http://localhost/ExtModule.API
+
+GET {{ExtModule.API_HostAddress}}/api/Data
+Accept: application/json
+
+
+### GetMasterData
+POST {{ExtModule.API_HostAddress}}/api/ERP/Data/GetMasterData
+Content-Type: application/json
+
+{
+  "masterTypeId": 3001,
+  "columns": ["iMasterId,sname","sCode"],
+  "condition": "",
+  "compId": 180
+}
+### GetDataBySp
+POST {{ExtModule.API_HostAddress}}/api/ERP/Data/GetDataBySp
+Content-Type: application/json
+
+{
+    "compId":"180",
+    // "sql": "xsp_ExtScreenLoadtableData '13', '','',''",
+    "Param":{
+       Screen: "ProjectTransfer",
+        "iProject":"1",
+        "EmployeeSel":""
+       
+    },
+    "spName":"xsp_ExtScreenLoadtableData"
+  
+}
+
+### PostToJV
+POST {{ExtModule.API_HostAddress}}/api/ERP/F8API/PostToJVBySP
+Content-Type: application/json
+
+{
+  "spName": "xsp_UpdateDataProjTransfer",
+  "compId": "180",
+  "sessionId": "050^270920241250411131801",
+  "param": {
+   "ScreenType":"ProjectTransfer"
+    ,"iEmployee":1
+    ,"iproject":2
+    ,"iPrevProject":1
+    ,"sDate":"20240927"
+    ,"iCreatedBy":1
+    ,"AirTicketProv":300
+    ,"ActionType":2
+  }
+}
+# {
+# "spName": "xsp_UpdateDataProjTransfer",
+#   "compId": 180,
+#   "sessionId": "050^270920241250411131801",
+#   ,"param":{
+#     "ScreenType":"ProjectTransfer"
+#     ,"iEmployee":1
+#     ,"iproject":2
+#     ,"iPrevProject":1
+#     ,"sDate":"20240927"
+#     ,"iCreatedBy":1
+#     ,"AirTicketProv":300
+#     ,"ActionType":2
+#   }
+# }
